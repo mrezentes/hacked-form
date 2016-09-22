@@ -5,35 +5,25 @@
   <meta name="viewport" content="width=device-width">
   <title>Payment Page</title>
   <link rel="stylesheet" type="text/css" href="/styles.css">
-  <script type="text/javascript">
-    var useThirdParty = function(){
-      // use some third part to generate a token from number and cvv
-      // after the token is generated, add it to the form and submit.
-      // for the purposes of this example, we will simply assume the library
-      // properly generated a token and add it to our form.
-
-      document.getElementById("payment_method_token").value = "CJDN4JRUF8EIRKGJ"
-      document.getElementById("payment-form").submit();
-    }
-  </script>
 </head>
 
 <body>
 
-  <form id="payment-form" accept-charset="UTF-8" class="spf-form" method="GET"
-    action="/submit.html" onsubmit="useThirdParty();" return false;">
+  <form id="payment-form" accept-charset="UTF-8" class="spf-form" method="POST"
+    action="https://core.spreedly.com/v1/payment_methods" >
 
-    <input type="hidden" name="payment_method_token" id="payment_method_token" value="" />
+    <input name="redirect_url" type="hidden" value="http://localhost:8080/submit" />
+    <input name="environment_key" type="hidden" value="UjBjPb64cci9m6MlZaL2tEVp1g4" />
 
     <fieldset class="spf-fs-name">
       <h2>Name</h2>
       <div class="spf-field spf-field-fname">
         <label class="internal" for="spf-fname">First Name</label>
-        <input type="text" class="spf-input-text" name="first_name" id="first_name">
+        <input type="text" class="spf-input-text" name="credit_card[first_name]" id="first_name">
       </div>
       <div class="spf-field spf-field-lname">
         <label class="internal" for="spf-lname">Last Name</label>
-        <input type="text" class="spf-input-text" name="last_name" id="last_name">
+        <input type="text" class="spf-input-text" name="credit_card[last_name]" id="last_name">
       </div>
     </fieldset>
 
@@ -43,22 +33,22 @@
       <div class="spf-field">
         <div id="spreedly-number-test" class="spf-field-group spf-number spf-field-cc">
           <label class="spf-field-group spf-number" for="card_number">Credit Card Number</label>
-          <input type="number" class="spf-input-text" pattern="[0-9]*" id="card_number" autocomplete="off" size="19"></input>
+          <input type="number" class="spf-input-text" pattern="[0-9]*" name="credit_card[number]" id="card_number" autocomplete="off" size="19"></input>
         </div>
         <div id="spreedly-cvv-test" class="spf-field-group spf-verification_value spf-field-cc">
           <label class="spf-field-group spf-verification_value" for="cvv">CVV</label>
-          <input type="number" class="spf-input-text" id="cvv" size="4" autocomplete="off"></input>
+          <input type="number" class="spf-input-text" id="cvv" name="credit_card[verification_value]" size="4" autocomplete="off"></input>
         </div>
       </div>
 
       <div class="spf-field spf-field-exp">
         <label>Expiration Date</label>
         <div class="spf-field-group spf-month">
-          <input type="text" class="spf-input-text spf-exp" name="month" id="month" size="3" maxlength="2" placeholder="MM">
+          <input type="text" class="spf-input-text spf-exp" name="credit_card[month]" id="month" size="3" maxlength="2" placeholder="MM">
         </div>
         <span class="spf-exp-divider">/</span>
         <div class="spf-field-group spf-year">
-          <input type="text" class="spf-input-text spf-exp" name="year" id="year" size="5" maxlength="4" placeholder="YYYY">
+          <input type="text" class="spf-input-text spf-exp" name="credit_card[year]" id="year" size="5" maxlength="4" placeholder="YYYY">
         </div>
       </div>
     </fieldset>
