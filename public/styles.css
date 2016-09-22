@@ -1,0 +1,191 @@
+/* Basic Layout
+---------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: #ebf1f5;
+  font-family: sans-serif;
+  font-size: 100%;
+  color: #555;
+  margin: 0;
+  padding: 0;
+}
+
+.spf-form {
+  background: #fff;
+  box-shadow: rgba(0,0,0,.15) 0 2px 20px,
+              rgba(0,0,0,.1) 0 0 3px;
+  border-radius: 6px;
+  min-width: 320px;
+  max-width: 550px;
+  width: 60%;
+  padding: 0;
+  margin: 2em auto;
+}
+
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 3em 1em 2em;
+  border-bottom: 1px solid #d2d8dc;
+}
+
+.spf-field-submit {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 2.5em;
+}
+
+h2 {
+  font-weight: 100;
+  font-size: 1.35em;
+  color: #41637b;
+  margin-top: 0;
+}
+
+.spf-field {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 1.5em;
+}
+
+label {
+  display: block;
+  margin-bottom: .25em;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.spf-label-secondary {
+  color: #999;
+  font-size: .8125em;
+  margin-top: .5em;
+}
+
+.spf-input-text {
+  display: block;
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  padding: .65em .5em;
+  font-size: 91%;
+}
+
+
+/* Specific Fields
+---------------------------------------------------------------- */
+
+/* Name */
+
+.spf-fs-name .spf-field {
+  width: 46%;
+  margin-right: 2%;
+}
+
+.spf-field-lname {
+  margin-right: 0;
+}
+
+/* Address */
+
+.spf-field-city {
+  width: 41%;
+  margin-right: 2%;
+}
+
+.spf-field-state {
+  width: 15%;
+  margin-right: 2%;
+}
+
+.spf-field-postcode {
+  width: 25%;
+}
+
+/* Iframe divs */
+.spf-field-cc{
+  height:50px;
+}
+
+.spf-number{
+  width:67%;
+}
+
+.spf-verification_value{
+  width:30%;
+}
+
+
+/* Expiry Date */
+
+.spf-field-group {
+  display: inline-block;
+}
+
+.spf-month {
+  width: 20%;
+}
+
+.spf-year {
+  width: 30%;
+}
+
+.spf-exp-divider {
+  display: inline-block;
+  margin: 0 .4em;
+  font-size: 150%;
+  line-height: 1.5;
+  position: relative;
+  top: .2em;
+}
+
+
+/* Button */
+
+.button {
+  display: inline-block;
+  width: 100%;
+  border-radius: 3px;
+  background: #41637b;
+  color: #fff;
+  padding: .75em 2em;
+  font-size: 100%;
+  border: none;
+  cursor: pointer;
+}
+.button:hover {
+  background: #537e9d;
+}
+.button:active {
+  position: relative;
+  top: 1px;
+}
+
+/* Message */
+
+#errors,
+#message {
+  color: red;
+  margin: 1em 0;
+  line-height: 1.5;
+}
+
+#message {
+  color: green;
+}
+
+
+/* Small Screen Modifications*/
+
+@media screen and (max-width: 400px) {
+  .spf-form {
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 625px) {
+  .spf-form {
+    width: 80%;
+  }
+}

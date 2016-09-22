@@ -1,0 +1,9 @@
+{
+  "name": "Hacked Payment Form",
+  "version": "1.0.0",
+  "description": "Hacked Payment Form",
+  "author": "Miki Rezentes",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}

