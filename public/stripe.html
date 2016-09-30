@@ -21,8 +21,6 @@
     var useThirdParty = function(){
       // use some third part to generate a token from number and cvv
       // after the token is generated, add it to the form and submit.
-      // for the purposes of this example, we will simply assume the library
-      // properly generated a token and add it to our form.
 
       var form = document.getElementById('payment-form');
       Stripe.card.createToken(document.getElementById('payment-form'), myStripeResponseHandler);
